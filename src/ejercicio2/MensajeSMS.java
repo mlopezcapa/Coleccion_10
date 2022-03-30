@@ -2,31 +2,33 @@ package ejercicio2;
 
 public class MensajeSMS extends MensajeCorto {
 
+	// Constantes
+	private static final double TARIFA_NACIONAL = 0.15;
+	private static final double TARIFA_INTERNACIONAL = 0.45;
+
+	// Constructor
 	public MensajeSMS(String mensaje, String telefono, String correo) {
 		super(mensaje, telefono, correo);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public double facturar() {
-		// TODO desarrollar metodo
 		double coste;
-		if (getTelefono().charAt(0) == 0) {
-			coste = 0.45;
+		if (getTelefono().trim().charAt(0) == '0') {
+			coste = TARIFA_INTERNACIONAL;
 		} else {
-			coste = 0.15;
+			coste = TARIFA_NACIONAL;
 		}
 		return coste;
 	}
 
 	@Override
 	public String enviarMensaje() {
-		// TODO desarrollar metodo
 		String mensajeSalida;
 		if (getMensaje().length() < 1) {
 			mensajeSalida = "El texto del mensaje está vacío";
 		} else {
-			mensajeSalida = String.format("Mensaje enviado al numero %s con un coste de %2f euros", getTelefono(),
+			mensajeSalida = String.format("Mensaje enviado al numero %s con un coste de %.2f euros", getTelefono(),
 					facturar());
 		}
 		return mensajeSalida;

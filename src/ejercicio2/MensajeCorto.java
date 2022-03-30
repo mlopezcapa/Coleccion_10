@@ -4,9 +4,9 @@ public abstract class MensajeCorto implements Facturable {
 
 	private static final String EXP_REG_TELEFONO = "^\\d{9,}$";
 
-	private static final String EXP_REG_CORREO = "^.{1,30}\\@.{1,20}\\.[a-z]{3}$";
+	private static final String EXP_REG_CORREO = "^.{1,30}[@].{1,20}.[a-z]{3}$";
 
-	private static final String EXP_REG_MENSAJE = "^.[^\\n]{160}$";
+	private static final String EXP_REG_MENSAJE = "^.{160}$";
 
 	// Propiedades
 	private String mensaje;
