@@ -4,17 +4,21 @@ public class MensajeEmail extends MensajeCorto {
 
 	public MensajeEmail(String mensaje, String telefono, String correo) {
 		super(mensaje, telefono, correo);
-		// TODO Auto-generated constructor stub
 	}
+
 	@Override
 	public double facturar() {
-		// TODO desarrollar metodo
-		return 0.0;
+		return .0;
 	}
-	
+
 	@Override
 	public String enviarMensaje() {
-		// TODO desarrollar metodo
-		return null;
+		String mensajeSalida;
+		if (getMensaje().length() < 1) {
+			mensajeSalida = "El texto del mensaje está vacío";
+		} else {
+			mensajeSalida = String.format("Mensaje enviado a la direccion electrinica %s", getCorreo());
+		}
+		return mensajeSalida;
 	}
 }

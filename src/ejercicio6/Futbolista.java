@@ -76,7 +76,7 @@ public class Futbolista implements Comparable<Futbolista> {
 
 		if (o instanceof Futbolista) {
 			Futbolista otroF = (Futbolista) o;
-			if (this.getDni() == otroF.getDni()) {
+			if (this.getDni().equalsIgnoreCase(otroF.getDni())) {
 				sonIguales = true;
 			}
 		}

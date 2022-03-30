@@ -2,6 +2,12 @@ package ejercicio2;
 
 public abstract class MensajeCorto implements Facturable {
 
+	private static final String EXP_REG_TELEFONO = "^\\d{9,}$";
+
+	private static final String EXP_REG_CORREO = "^.{1,30}\\@.{1,20}\\.[a-z]{3}$";
+
+	private static final String EXP_REG_MENSAJE = "^.[^\\n]{160}$";
+
 	// Propiedades
 	private String mensaje;
 	private String telefono;
@@ -9,10 +15,14 @@ public abstract class MensajeCorto implements Facturable {
 
 	// Constructor
 	public MensajeCorto(String mensaje, String telefono, String correo) {
-		super();
-		this.mensaje = mensaje;
-		this.telefono = telefono;
-		this.correo = correo;
+		try {
+			setMensaje(mensaje);
+			setTelefono(telefono);
+			setCorreo(correo);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
 	}
 
 	// Getters y setters
@@ -21,7 +31,9 @@ public abstract class MensajeCorto implements Facturable {
 	}
 
 	void setMensaje(String mensaje) {
-		// TODO validacion
+		if (!mensaje.matches(EXP_REG_MENSAJE)) {
+			throw new IllegalArgumentException("El mensaje excede de los 160 caracteres");
+		}
 		this.mensaje = mensaje;
 	}
 
@@ -30,7 +42,9 @@ public abstract class MensajeCorto implements Facturable {
 	}
 
 	void setTelefono(String telefono) {
-		// TODO validacion
+		if (!telefono.matches(EXP_REG_TELEFONO)) {
+			throw new IllegalArgumentException("El telefono debe tener al menos 9 dígitos");
+		}
 		this.telefono = telefono;
 	}
 
@@ -39,12 +53,13 @@ public abstract class MensajeCorto implements Facturable {
 	}
 
 	void setCorreo(String correo) {
-		// TODO validacion
+		if (!correo.matches(EXP_REG_CORREO)) {
+			throw new IllegalArgumentException("El correo no cumple con el formato nombre@subdominio.dominio");
+		}
 		this.correo = correo;
 	}
 
 	public String enviarMensaje() {
-		// TODO desarrollar método
 		return null;
 	}
 
