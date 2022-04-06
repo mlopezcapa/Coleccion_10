@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Libro extends Publicacion implements Prestable {
 
+	private static final int TIEMPO_PRESTAMO = 1;
 	private boolean prestado;
 	private LocalDate fechaDevolucion;
 
@@ -35,7 +36,7 @@ public class Libro extends Publicacion implements Prestable {
 	public LocalDate prestar() {
 		if (!isPrestado()) {
 			setPrestado(true);
-			setFechaDevolucion(LocalDate.now().plusMonths(1));
+			setFechaDevolucion(LocalDate.now().plusMonths(TIEMPO_PRESTAMO));
 		}
 		return getFechaDevolucion();
 	}
@@ -53,7 +54,7 @@ public class Libro extends Publicacion implements Prestable {
 
 	@Override
 	public String toString() {
-		return super.toString();
+		return super.toString() + (isPrestado() ? "Libro[Fecha de devolucion: ]" : "No prestado");
 	}
 
 }
